@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Change Log</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div style="background-color: #737373; color: #000">
+              <h4>Following is the changes done on 04/12/2016 v1.7 of demo </h4>
+            <div>
+            <h5>Update following files</h5> 
+            <ul>
+            <li>lib/update.php</li>
+            <i>changed code for mode 3 functions</i>  
+             <li>lib/testlib.php</li>
+            <i>changed code for addrow1 functions</i>
+             <li>defect</li>
+            <i>Overall things to work</i> 
+                <li>changelog.html</li><i>Contains changes for this release v1.6</i>
+            </ul>
+            
+        </div>
+                   
+        <div>   
+            <h5>Commands Run</h5>   
+        </div>
+            <div>
+            <h5>Config Changes</h5> 
+            <ul>
+                <li></li><i></i>
+             
+            </ul>
+            
+        </div>
+            <div>
+            <h5>Data Changes</h5> 
+            <ul>
+                <li></li><i></i>
+            </ul>
+            
+        </div>
+        </div> 
+        <div style="background-color: #737373; color: #000">
+              <h4>Following is the changes done on 24/11/2016 v1.6 of sms </h4>
+            <div>
+            <h5>Update following files</h5> 
+            <ul>
+            <li>lib/sms_utils.php</li>
+            <i>added code on line 154 to consider ytd gross for end dated employees</i>  
+                <li>changelog.html</li><i>Contains changes for this release v1.6</i>
+            </ul>
+            
+        </div>
+                   
+        <div>   
+            <h5>Commands Run</h5>   
+        </div>
+            <div>
+            <h5>Config Changes</h5> 
+            <ul>
+                <li></li><i></i>
+             
+            </ul>
+            
+        </div>
+            <div>
+            <h5>Data Changes</h5> 
+            <ul>
+                <li></li><i></i>
+            </ul>
+            
+        </div>
+        </div>  
+        
+        <div style="background-color:blue; color: whitesmoke"><h4>Following is the changes done on 30/10/2016 v1.5 of sms </h4>
+            <div>
+            <h5>Update following files</h5> 
+            <ul>
+                <li>master</li><i>Search enabled</i>
+                <li>payroll</li><i>Search enabled</i>
+                <li>home.php</li><i>Events are now called here</i>
+                <li>lib/events.php</li><i>code for enable disable script</i>
+                <li>lib/insert.php</li><i>events.php is not used here now</i>
+                <li>lib/utils.php</li><i>search now holds to each page as hyperlink disabled</i>
+                <li>lib/sms_utils.php</li><i>added code on line 139 to read bonus from loaded_payroll</i>
+                <li>emp_sal_slip.php</li><i>PLIB renamed to Bonus</i>
+                <li>changelog.html</li><i>Contains changes for this release v1.5</i>
+            </ul>
+            
+        </div>
+                   
+        <div>   
+            <h5>Commands Run</h5>
+            Vipuls-MacBook-Air:sms_dev vipulgupta$ scp master root@106.51.121.251:/var/www/html/sms/
+root@106.51.121.251's password: 
+master                                                             100% 1870     1.8KB/s   00:00    
+Vipuls-MacBook-Air:sms_dev vipulgupta$ scp payroll root@106.51.121.251:/var/www/html/sms/
+root@106.51.121.251's password: 
+payroll                                                            100% 3730     3.6KB/s   00:00    
+Vipuls-MacBook-Air:sms_dev vipulgupta$ scp lib/events.php root@106.51.121.251:/var/www/html/sms/lib/
+root@106.51.121.251's password: 
+events.php                                                         100% 2170     2.1KB/s   00:00    
+Vipuls-MacBook-Air:sms_dev vipulgupta$ scp home.php root@106.51.121.251:/var/www/html/sms/
+root@106.51.121.251's password: 
+home.php                                                           100% 3231     3.2KB/s   00:00    
+Vipuls-MacBook-Air:sms_dev vipulgupta$ scp lib/insert.php root@106.51.121.251:/var/www/html/sms/lib/
+root@106.51.121.251's password: 
+insert.php                                                         100% 1391     1.4KB/s   00:00    
+Vipuls-MacBook-Air:sms_dev vipulgupta$ scp lib/utils.php root@106.51.121.251:/var/www/html/sms/lib/
+Vipuls-MacBook-Air:sms_dev vipulgupta$ scp changelog.html root@106.51.121.251:/var/www/html/sms/
+$scp ./emp_sal_slip.php root@106.51.121.251:/var/www/html/sms/
+$
+        </div>
+            <div>
+            <h5>Config Changes</h5> 
+            <ul>
+                <li>field</li><i>add new field. TableID:Loaded_payroll, field name:bonus, 
+                    field alias:Bonus, Field Type : text, Database Type : int, Field size :10</i>
+                <li>field_option</li><i>add disable option.
+                    OptionID	TableID	FieldId	Value	Alias 45 7 312
+0</i>
+            </ul>
+            
+        </div>
+            <div>
+            <h5>Data Changes</h5> 
+            <ul>
+                <li>events</li><i>update the codes. 
+                    Disable keypress option for payroll and master at row 5,8</i>
+            </ul>
+            
+        </div>
+        </div> 
+        
+          
+    </body>
+</html>

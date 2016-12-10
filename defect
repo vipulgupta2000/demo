@@ -1,0 +1,56 @@
+<?php 
+if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){
+?>
+<div id="middle_right_top">
+<h2>Master</h2>
+</div>
+
+<div class="col-md-10">
+<?php
+$tbl=$_GET['page'];
+echo "<a href=\"http://localhost/demo/home.php?page=$tbl\">Show All</a><br /><br />";
+$field_edit=array('id','description','status','severity');
+$field_show=array();
+//$qual=NULL;
+$qual_orig=" 1=1";
+$qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
+echo "Qual:<input type=\"text\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
+
+$sel=isset($_POST['sel'])?$_POST['sel']:NULL;
+$act=isset($_POST['act'])?$_POST['act']:NULL;
+$back=isset($_POST['back'])?$_POST['back']:'';
+echo "<input type=\"text\" name=\"sel\" value=\"$sel\" />";
+   
+if ($act=='click' ) {	
+	echo input_new($tbl,$sel,$field_edit,$field_show,3); 
+        $act="";
+}
+elseif(isset($_POST['new'])){
+      echo "we got into new " ;   
+addrow1($tbl,$field_edit,$field_show,3);
+}
+elseif (isset($_POST['updates'])) {  
+     echo input_new($tbl,$sel,$field_edit,$field_show,3); 
+}
+elseif (isset($_POST['update'])) {    
+     echo display($tbl,$qual,1,$field_show);
+}
+elseif(isset($_POST['back']))
+{ 
+echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
+echo display($tbl,$qual,1,$field_show); 
+}elseif (isset($_POST['modify'])) { 
+ echo input($tbl,$qual,$field_edit,$field_show,1); 
+}
+else{
+echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
+echo display($tbl,$qual,1,$field_show);
+addrow($tbl);
+}
+
+}
+else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
+
+echo "<input type=\"text\" name=\"act\" value=\"$act\"  />";
+?>
+    </div>
