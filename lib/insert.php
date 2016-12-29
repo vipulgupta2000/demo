@@ -34,6 +34,16 @@ if(!mysql_query($sqli))
 	die.mysql_error();
 	}
 }
+if($tbl=='config')
+{
+$sqli=createtable();
+echo $sqli;
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+  createid();
+}
 $sqli=insert($tbl);
 //echo $sqli;
 if(!mysql_query($sqli))

@@ -1,7 +1,4 @@
-<?php 
-if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){}
-else{header("location:accessdenied.php");}
-?>
+
 <div id="middle_right_top">
 <h2>Payroll</h2>
 </div>
@@ -27,8 +24,8 @@ $field_edit1=array('empid','name','days','month','laptop_allowance','medical_rei
 $field_display=array('id','empid','name','days','month','year','monthly_gross','net_salary','status');
 $field_show=array();
 $field_show1 =array('id','empid','name','days','month','year','monthly_gross','net_salary','status');
-
-if ($act=='click' ) {	
+ echo $qual;
+/*if ($act=='click' ) {	
 	echo input_new($tbl,$sel,$field_edit1,$field_show,3);   
 }
 elseif (isset($_POST['update'])) {  
@@ -42,8 +39,12 @@ elseif(isset($_POST['back']))
 elseif(isset($_POST['New'])){
 addrow1($tbl,$field_edit,$field_show,3);}
 else{
-echo display($tbl,$qual,1,$field_display);}
+ 
+ */
+echo display($tbl,$qual,1,$field_show);
 
+
+/*
 if(isset($_POST['close_payroll'])){
 	
 	update($tbl);
@@ -93,6 +94,7 @@ $i++;
 }
 echo "<script>window.location.href='home.php?page=payroll';</script>";
 }
+*/
 
 
 ?>

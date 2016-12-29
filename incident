@@ -1,24 +1,25 @@
-<?php 
-if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){
-?>
 <div id="middle_right_top">
-<h2>Defect Management</h2>
+<h2>Incident Management</h2>
 </div>
 
-<div class="col-md-10">
+<div class="col-md-12">
 <?php
 $tbl=$_GET['page'];
 echo "<a href=\"home.php?page=$tbl\">Show All</a><br /><br />";
 $field_edit=array('id','description','status','severity','assignedto');
-$field_show=array('fieldlist');
-$field_show=display_array('workflow',"1=1",1,$field_show);
-//var_dump($field_show[0]['fieldlist']);
-$str=$field_show[0]['fieldlist'];
-//echo $str;
-$field_show=explode(",",$str);
-//var_dump($field_show);
-//$qual=NULL;
+$field_edit=array('fieldlist');
+
+echo $_SESSION['SESS_access'];
+$myqual=" formname='$tbl' and permission='$_SESSION[SESS_perm]'";
+$field_edit=display_array('workflow',$myqual,1,$field_edit);
+$str=isset($field_edit[0]['fieldlist'])?$field_edit[0]['fieldlist']:'';
+$field_edit=explode(",",$str);
+
 $qual_orig=" 1=1";
+$field_show1=array('id','status','prioirity','createdate');
+
+$field_show=array();
+
 $qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
 echo "<input type=\"hidden\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
 
@@ -28,7 +29,7 @@ $back=isset($_POST['back'])?$_POST['back']:'';
 echo "<input type=\"hidden\" name=\"sel\" value=\"$sel\" />";
    
 if ($act=='click' ) {	
-	echo input_new($tbl,$sel,$field_edit,$field_show,2); 
+	echo input_new($tbl,$sel,$field_edit,$field_show,3); 
         $act="";
 }
 elseif(isset($_POST['new'])){   
@@ -46,16 +47,12 @@ echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=
 echo display_link($tbl,$qual,1,$field_show); 
 }elseif (isset($_POST['modify'])) { 
  echo input($tbl,$qual,$field_edit,$field_show,1); 
+//echo input_new($tbl,$sel,$field_edit,$field_show,2);
 }
 else{
-echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
-echo display_link($tbl,$qual,1,$field_show);
-// echo input($tbl,'severity=1',$field_edit,$field_show,1); 
-//addrow($tbl);
-}
+echo display($tbl,$qual,1,$field_show1);
 
 }
-else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
 
 echo "<input type=\"hidden\" name=\"act\" value=\"$act\"  />";
 ?>

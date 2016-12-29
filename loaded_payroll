@@ -188,6 +188,12 @@ else{}error_reporting(0); */
 
 }
 else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
+
+// This code will only run when the Validated Button is clicked otherwise not
+if(isset($_POST['validate']))
+{$my_table =$_GET['page'];
+if($my_table == "loaded_payroll"){$sqli="UPDATE ".$tbl." set status = 'Validated' Where ".$fval;}}
+
 ?>
 
 

@@ -670,7 +670,6 @@ if($mode>=2)
 										//}
 										//below handles code if no value is set and also instead of value shows alias
 										$alias=(isset($alias)&&($alias!=null))?$alias:"--clear--";
-										echo "alias is".$alias;
 										$x=$x.$tg_opt.$datarow[$row['name']].$tg_cl.$alias.$tg_opt_cl;
 										//introducing for clear value option
 										$x=$x.$tg_opt."".$tg_cl."--clear--".$tg_opt_cl;

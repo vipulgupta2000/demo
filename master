@@ -9,8 +9,9 @@ if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){
 <?php
 $tbl=$_GET['page'];
 echo "<a href=\"http://localhost/demo/home.php?page=$tbl\">Show All</a><br /><br />";
-$field_edit=array('id','description','status','severity');
-$field_show=array();
+$field_edit=array('emptype','empid','name','pan','doj','valid','edate','monthly_gross','net_salary','status','pf_accno','child_education','sex','medical_reimbursement','other','tax_slab_exemption','performance_linked_incentives','ptax','basic','hra','sdate','lwf');
+$field_show=array('id','empid','name','doj','sdate','edate','valid','performance_linked_incentives','monthly_gross','pan');
+$field_show1=array();
 //$qual=NULL;
 $qual_orig=" 1=1";
 $qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
@@ -22,15 +23,16 @@ $back=isset($_POST['back'])?$_POST['back']:'';
 echo "<input type=\"text\" name=\"sel\" value=\"$sel\" />";
    
 if ($act=='click' ) {	
-	echo input_new($tbl,$sel,$field_edit,$field_show,3); 
+	echo input_new($tbl,$sel,$field_edit,$field_show1,3); 
         $act="";
 }
 elseif(isset($_POST['new'])){
-      echo "we got into new " ;   
-addrow1($tbl,$field_edit,$field_show,3);
+      //echo "we got into new " ;   
+addrow1($tbl,$field_edit,$field_show1,3);
 }
 elseif (isset($_POST['updates'])) {  
-     echo input_new($tbl,$sel,$field_edit,$field_show,3); 
+    //echo "we are here";
+     echo input_new($tbl,$sel,$field_edit,$field_show1,3); 
 }
 elseif (isset($_POST['update'])) {    
      echo display($tbl,$qual,1,$field_show);
@@ -45,7 +47,7 @@ echo display($tbl,$qual,1,$field_show);
 else{
 echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
 echo display($tbl,$qual,1,$field_show);
-addrow($tbl);
+//addrow($tbl);
 }
 
 }

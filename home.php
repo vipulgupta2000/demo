@@ -38,7 +38,7 @@ require_once("auth.php");
 <div class="row" id="top">
 	<div class="col-md-3 col-xs-6"><img id="img" src="images/logo.png" alt="Input Zero" /></div>
 	<div class="col-md-7 col-xs-6">
-		<h2>Welcome To Salary Management</h2>
+		<h2>Welcome To Demo Management</h2>
 	</div>
 </div>
 <div class="navbar navbar-default" role="navigation">

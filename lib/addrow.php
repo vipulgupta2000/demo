@@ -263,7 +263,7 @@ $i++;
 function load_data($tbl)
 {
 $sql=dbsql($tbl);
-
+if (get_magic_quotes_gpc()) $_POST = array_map('stripslashes', $_POST);
 $fname="";	$fval="";	$i=0;
 $cnt=$_POST['icnt'];
 $field_list=explode(",",$_POST['field_edit']);
@@ -577,37 +577,7 @@ if(!mysql_query($sqli))
 $fname=chop($fname,",");
 $fval=chop($fval,",");
 $sqli="UPDATE ".$tbl." set ".$fname." Where ".$fval;
-
 //echo $sqli."<br/>";
-
-// This code will only run when the page name is Bank otherwise not
-if($_GET['page'] == 'bank'){
-//echo $fname."<br/>";	
-//echo $fval."<br/>";
-
-if($fname == "status='Loaded'"){}
-elseif($fname == "status='Reconcile'"){
-	
-	$sql_get = mysql_query("select * from bank where ".$fval);
-	while($row = mysql_fetch_array($sql_get))
-	{
-		$bdate = $row['idate'];
-		$bdesc = $row['description'];
-		
-		$bamt = $row['amt'];
-	}
-	
-	$sql_acc_insert = mysql_query("insert into accounts (date,entry_from,name,dr,cr) values ('$bdate','Bank','$bdesc',0,'$bamt')");
-	
-}
-}
-
-
-// This code will only run when the Validated Button is clicked otherwise not
-if(isset($_POST['validate']))
-{$my_table =$_GET['page'];
-if($my_table == "loaded_payroll"){$sqli="UPDATE ".$tbl." set status = 'Validated' Where ".$fval;}}
-
 $fname="";	$fval="";
 if(isset($sqli) && !mysql_query($sqli))
 	{
@@ -617,5 +587,24 @@ if(isset($sqli) && !mysql_query($sqli))
 $i++;
 }
 
+}
+
+function createtable()
+{
+    $sql_create="CREATE TABLE ".$_POST['name0']."( `id` INT(9) NOT NULL AUTO_INCREMENT , PRIMARY KEY (`id`)) ENGINE = InnoDB";
+   return $sql_create;
+}
+
+function createid()
+{
+    $sql="select max(tblid)+1 from config";
+    if($resultid=mysql_query($sql))
+        {$rid=mysql_result($resultid,0);}
+        else{die.mysql_error();}
+   $sqli="INSERT INTO `field` (`tblid`, `name`, `alias`, `type`, `dbtype`, `dbindex`, `size`, `col`, `ord`, `span`) VALUES (".$rid.", 'id', 'ID', 'text', 'int', 'primary', '9', '0', '0', '0')";     
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
 }
 ?>

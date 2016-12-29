@@ -28,4 +28,27 @@ echo "<script>window.location.href='home.php?page=bank';</script>";
 }
 }
 else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
+
+// This code will only run when the page name is Bank otherwise not
+if($_GET['page'] == 'bank'){
+//echo $fname."<br/>";	
+//echo $fval."<br/>";
+
+if($fname == "status='Loaded'"){}
+elseif($fname == "status='Reconcile'"){
+	
+	$sql_get = mysql_query("select * from bank where ".$fval);
+	while($row = mysql_fetch_array($sql_get))
+	{
+		$bdate = $row['idate'];
+		$bdesc = $row['description'];
+		
+		$bamt = $row['amt'];
+	}
+	
+	$sql_acc_insert = mysql_query("insert into accounts (date,entry_from,name,dr,cr) values ('$bdate','Bank','$bdesc',0,'$bamt')");
+	
+}
+}
+
 ?>
