@@ -3,7 +3,7 @@ function getPagelink_1($iteration)
 	{$x=1;$j=1;
         if(isset($_GET['num'])){$j=$_GET['num'];}
       
-	echo "<ul class=\"pagination\"><li><a onclick=\"openPage(".$x.",".$_GET['page'].");\" href=\"#\">&laquo;</a></li>";
+	echo "<ul class=\"pagination\"><li><a onclick=\"openPage(".$x.",'".$_GET['page']."');\" href=\"#\">&laquo;</a></li>";
 	for($i=1;$i<=$iteration;$i++)
 	{ 
             //  echo "j is $j";
@@ -15,14 +15,14 @@ function getPagelink_1($iteration)
 	}
  
 function getPagelink($iteration)
-{$x=1;
-echo "<ul class=\"pagination\"><li><a onclick=\"openPage(".$x.",'".$_GET['page']."'".");\" href=\"#\">&laquo;</a></li>";
-for($i=1;$i<=$iteration;$i++)
-{ echo "<li ><a onclick=openPage(".$i.",'".$_GET['page']."'".") href=\"#\"";
-echo ">".$i."</a></li>";
-}$x=$i-1;echo "<li><a onclick=\"openPage(".$x.",'".$_GET['page']."'".");\" href=\"#\">&raquo;</a></li></ul>";
-}
-        
+	{
+	echo "<ul class=\"pagination\"><li><a href=\"#\">&laquo;</a></li>";
+	for($i=1;$i<=$iteration;$i++)
+	{ echo "<li><a href=home.php?page=".$_GET['page']."&num=".$i;
+	echo ">".$i."</a></li>";
+	}$x=$i-1;echo "<li><a href=\"home.php?page=".$_GET['page']."&num=".$x."\">&raquo;</a></li></ul>";
+	}
+
 function getPagesql($sql,$rec_limit)
 	{
 
@@ -36,11 +36,10 @@ function getPagesql($sql,$rec_limit)
 
 		}
 		if(ceil($total/$rec_limit)>1)
-		getPagelink(ceil($total/$rec_limit));
+		getPagelink_1(ceil($total/$rec_limit));
 		$sql=$sql." limit ".$start.", ".$rec_limit;
 		return $sql;
 	}
-
 function datasearch($search=NULL,$qual)
 {
 $sql_filter="";
