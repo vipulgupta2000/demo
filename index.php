@@ -1,53 +1,63 @@
 <html>
 <head>
-<title>Salary Management</title>
+<title>Service Desk Management</title>
 <link rel="stylesheet" type="text/css" href="css/templateblue.css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="css/style.css" rel="stylesheet"/>
 </head>
 
 <body>
 <center>
-<div id="box">
-
-	<div id="top">
+    <div class="container-fluid">
+        	<div id="top">
 	<div id="top_left">
 	<img id="img" src="images/logo.png" alt="Input Zero" />
 	</div>
 	<div id="top_middle">
-	<font face="times new roman">Welcome To Salary Management</font>
+	<font face="times new roman">Welcome To Service Desk</font>
 	</div>
 	</div>
+        	<div class="row">
+		<div class="col-md-12">
+		<br/><br/><br/><br/>
+                </div>
+	</div>
+	<div class="row" >
+		<div class="col-md-4">
+		</div>
+		<div id="121"  style="background-image: url(images/bg.jpg)" class="col-md-4">
+			<form role="form" method="POST" action="check_login.php">
+				<div class="form-group">
+					 
+					<label for="myusername">
+						UserName
+					</label>
+                                    <input class="form-control" name="myusername" type="text" id="myusername" size="30">
+				
+				</div>
+				<div class="form-group">
+					 
+					<label for="mypassword">
+						Password
+					</label>
+	
+                                        <input class="form-control" name="mypassword" type="password" id="mypassword" size="30">
+							 
+					
+                                </div>
 
-	<div id="middle">
-	<br /><br /><br /><br /><br />
-	<table  width="250" border="1" cellpadding="0" cellspacing="1">
-	<tr>
-	<form method="post" action="check_login.php">
-	<td>
-	<table width="100%" border="1" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-	<tr>
-	<td colspan="3"><strong>Member Login </strong></td>
-	</tr>
+				<button type="submit" class="btn btn-default">
+					Submit
+				</button>
+                            <input id='btn' class="btn btn-default" type='submit' name='forgot_pass' value='Forgot/Reset Password' onclick="location.href='forgot_pass/index.html'"/>
+			</form>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+</div>
 
-	<tr>
-	<td width="80">Username:</td>
-	<td width="250"><input name="myusername" type="text" id="myusername" size="30"></td>
-	</tr>
-
-	<tr>
-	<td width="80">Password:</td>
-	<td width="250"><input name="mypassword" type="password" id="mypassword" size="30"></td>
-	</tr>
-
-	<tr>
-	<td>&nbsp;</td>
-	<td><input type="submit" name="submit" value="Login"></td>
-	</tr>
-	</table>
-	</td>
-	</form>
-	</tr>
-	</table>
-	<br/><input id='btn' type='submit' name='forgot_pass' value='Forgot/Reset Password' onclick="location.href='forgot_pass/index.html'"/><br/><br/>
+	<br/><br/><br/>
 	</div>
 
 	<div id="footer">

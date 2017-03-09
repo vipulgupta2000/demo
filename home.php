@@ -65,7 +65,8 @@ require_once("auth.php");
 						<?php
 
 							echo "<form role=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" name=\"form1\" id=\"frm1\" action=\"\" method=\"POST\">";
-							include("lib/insert.php");
+							//echo "<input type=\"text\" id=\"uid\" value=\"\" />";
+                                                        include("lib/insert.php");
 
 							echo "</form>";
 						?>
@@ -96,6 +97,16 @@ function openPage($var,$tb)
 var x=$var;
 var t=$tb;
 document.forms["frm1"].action="home.php?page="+t+"&num="+x;
+document.forms["frm1"].submit();
+}
+function openRec($var,$tb)
+{
+var x=$var;
+var t=$tb;
+//document.forms["frm1"].elements['uid'].value=x;
+document.forms["frm1"].elements['sel'].value=" id="+x;
+document.forms["frm1"].elements['act'].value="click";
+//document.forms["frm1"].action="home.php?page="+t;
 document.forms["frm1"].submit();
 }
     </script>

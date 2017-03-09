@@ -1,4 +1,4 @@
-
+    
 <html><head>
   <meta charset="utf-8">
   <title>Salary Management</title>
@@ -36,3 +36,57 @@
 
 </body>
 </html>
+
+
+
+ <div class="tabbable" id="tabs-344382">
+    <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+            Home</a></li>
+    <li role="presentation">
+        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+            Resourcing</a></li>
+    <li role="presentation">
+        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+            Messages</a></li>
+    <li role="presentation">
+        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+            Settings</a></li>
+  </ul>
+    
+    <div class="tab-content">
+    <div class="tab-pane active" id="home">
+            <p>
+                    I'm i 1.
+            </p>
+    </div>
+    <div class="tab-pane" id="profile">
+            <p>
+                    
+            </p>
+    </div>
+           <div class="tab-pane" id="messages">
+            <p>
+                all is well
+            </p>
+    </div>
+        </div></div>
+<a id="modal-937122" href="#modal-container-937122" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+   <div class="modal fade" id="modal-container-937122" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel" contenteditable="true">Modal title</h4>
+      </div>
+      <div class="modal-body" contenteditable="true">
+      <?php echo input_new("resourcing"," id=2",$field_edit,$field_show,3); ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" contenteditable="true">Close</button>
+        <button type="button" class="btn btn-primary" contenteditable="true">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

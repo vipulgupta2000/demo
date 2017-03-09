@@ -1,5 +1,6 @@
 <?php 
 
+if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){
 ?>
 <div id="middle_right_top">
 <h2>Resource Management</h2>
@@ -9,7 +10,7 @@
 <?php
 //$tbl=$_GET['page'];
 $tbl='resourcing';
-echo "<a href=\"home.php?page=\"".$tbl."\">Show All</a> ";
+echo "<a href=\"home.php?page=$tbl\">Show All</a><br /><br />";
 $field_edit=array('id','name','sdate');
 
 //fields thing from workflow
@@ -34,17 +35,6 @@ foreach($val as $k=>$v)
 }
 //echo "$val[0]"; 
 }
-/*$bt=array("Open","Review","Rated","Accepted","Closed");
-$btp=array("btn-info","btn-warning","btn-danger","btn-primary","btn-success");
-echo "<div class=\"btn-group\">";
-for($i=0;$i<count($bt);$i++)
-{
-$hd="<button type=\"button\" class=\"btn btn-default btn-lg ".$btp[$i]."\">";
-$tl="<span class=\"glyphicon glyphicon-chevron-right\"></span></button>";
-echo $hd.$bt[$i].$tl;
-}*/
-//var_dump($field_show);
-//$qual=NULL;
 $qual_orig=" 1=1";
 $qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
 echo "<input type=\"hidden\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
@@ -88,7 +78,8 @@ echo display($tbl,$qual,1,$field_show);
 echo "<button class=\"btn btn-danger\" onclick=\"myFunction()\">Try it</button>";
 }
 
-
+}
+else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
 
 echo "<input type=\"hidden\" name=\"act\" value=\"$act\"  />";
 
@@ -105,7 +96,7 @@ echo "<input type=\"hidden\" name=\"act\" value=\"$act\"  />";
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">...</div>
-    <div role="tabpanel" class="tab-pane" id="profile"></div>
+    <div role="tabpanel" class="tab-pane" id="profile"><?php echo display_link($tbl,$qual,1,$field_show);?></div>
     <div role="tabpanel" class="tab-pane" id="messages"> <img src="images/lion.jpeg" class="img-responsive" alt="Responsive image"></div>
     <div role="tabpanel" class="tab-pane" id="settings">...</div>
   </div>

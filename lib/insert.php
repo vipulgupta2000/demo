@@ -9,7 +9,8 @@ include('utils.php');
 include("events.php");
 //include('rowaccess.php');
 include('sms_utils.php');
-$tbl=$_GET['page'];
+//$tbl=isset($_POST['tbl'])?$_POST['tbl']:'abc';
+//$tbl='resourcing';
 include('testlib.php');
 //DB SQLs
 

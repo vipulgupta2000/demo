@@ -232,7 +232,7 @@ $fval="";
 		if($row['dbindex']=='primary' || !in_array($row['name'], $arr))
 		//if($row['dbindex']=='primary')
 		{
-		$x=$tg_ip.$tg_ip_type.$tg_hidden.$tg_ip_class.$tg_ip_name.$row['name'].$cnt.$tg_ip_size.$row['size'].$tg_ip_value;
+		$x=$tg_ip.$tg_ip_type.$tg_text.$tg_readonly.$tg_ip_class.$tg_ip_name.$row['name'].$cnt.$tg_ip_size.$row['size'].$tg_ip_value;
 		//if($row['type']=="idate")
 			//			{
 				//		$x=$x.getmydate($datarow[$row['name']]).$tg_ip_cl;
