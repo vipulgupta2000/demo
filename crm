@@ -1,0 +1,86 @@
+<?php 
+//echo "<form role=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" name=\"form1\" id=\"frm1\" action=\"\" method=\"POST\">";
+echo "<input type='text' name='tbl' value='".$_GET['page']."' >";					
+
+?>
+<div id="middle_right_top">
+<h2>Defect Management</h2>
+</div> 
+<div class="col-md-10">
+<?php
+$tbl=$_GET['page'];
+echo "<a href=\"home.php?page=$tbl\">Show All</a><br /><br />";
+$field_edit=array('id','description','status','severity','assignedto');
+$field_show=array('fieldlist');
+$field_show=display_array('workflow',"1=1",1,$field_show);
+//var_dump($field_show[0]['fieldlist']);
+$str=$field_show[0]['fieldlist'];
+//echo $str;
+$field_show=explode(",",$str);
+//var_dump($field_show);
+//$qual=NULL;
+$qual_orig=" 1=1";
+$qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
+echo "<input type=\"text\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
+
+$rid=isset($_POST['sel'])?str_replace("id", "parentrecid", $_POST['sel']):NULL;
+$sel=isset($_POST['sel'])?$_POST['sel']:NULL;
+$act=isset($_POST['act'])?$_POST['act']:NULL;
+$back=isset($_POST['back'])?$_POST['back']:'';
+echo "<input type=\"hidden\" name=\"sel\" value=\"$sel\" />";
+echo "<input type=\"text\" name=\"rid\" value=\"$rid\" />";
+
+$btn_new="<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
+if(isset($_POST['new'])){   
+addrow1($tbl,$field_edit,$field_show,3);
+}
+elseif (isset($_POST['updates']) || $act=='click') {  
+     echo input_new($tbl,$sel,$field_edit,$field_show,3); 
+      $act="";
+    echo display_ref($tbl,$rid,1,$field_show);
+ ?>   
+    <a id="modal-937122" href="#modal-container-937122" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+   <div class="modal fade" id="modal-container-937122" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel" contenteditable="true">Modal title</h4>
+      </div>
+      <div class="modal-body" contenteditable="true">
+      <?php
+      /*$field_show2=array();
+      $field_edit2=array('id','status','impact');
+      $tbl='incident';
+      addrow1('incident',$field_edit2,$field_show2,3);  
+      */
+         ?>
+      </div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" contenteditable="true">Close</button>
+        <button type="button" class="btn btn-primary" contenteditable="true">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+    
+    <?php
+   
+}
+elseif (isset($_POST['update'])) {    
+     echo display($tbl,$qual,1,$field_show);
+}
+elseif(isset($_POST['back']))
+{ 
+echo $btn_new;
+echo display_link($tbl,$qual,1,$field_show); 
+}elseif (isset($_POST['modify'])) { 
+ echo input($tbl,$qual,$field_edit,$field_show,1); 
+}
+else{
+   // include('qual');
+echo $btn_new;
+echo display_link($tbl,$qual,1,$field_show);
+}echo "<input type=\"hidden\" name=\"act\" value=\"$act\"  />";
+?>
+    </div>

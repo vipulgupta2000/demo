@@ -35,4 +35,36 @@ echo "<script>".$b."</script>";
 }
 }
 else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
+
+if(isset($_POST['addrow']))
+{
+if($tbl=='field')
+{
+$sqli=alter();
+echo $sqli;
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+}
+if($tbl=='config')
+{
+$sqli=createtable();
+echo $sqli;
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+  createid();
+}
+$sqli=insert($tbl);
+//echo $sqli;
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+//echo "<p> records inserted </p>";
+//Added newly
+
+}
 ?>

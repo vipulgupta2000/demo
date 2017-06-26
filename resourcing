@@ -53,7 +53,28 @@ $sel=isset($_POST['sel'])?$_POST['sel']:NULL;
 $act=isset($_POST['act'])?$_POST['act']:NULL;
 $back=isset($_POST['back'])?$_POST['back']:'';
 echo "<input type=\"hidden\" name=\"sel\" value=\"$sel\" />";
-   
+// Create a new record
+if(isset($_POST['addrow']))
+{
+    //validations
+if(isset($_POST['name0']))
+{   if($_POST['name0']=="vipul")
+{echo $_POST['name0']." Name is a required field";}}
+    else{
+$sqli=insert($tbl);
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+    }
+}
+// Update a  record
+if(isset($_POST['update']) || isset($_POST['updates']))
+{
+update($tbl);
+//update_single($tbl);
+//echo "<p> Records Updated </p>";
+}
 if ($act=='click' ) {	
 	echo input_new($tbl,$sel,$field_edit,$field_show,2); 
         $act="";
@@ -75,10 +96,6 @@ echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=
 echo display_link($tbl,$qual,1,$field_show); 
 }elseif (isset($_POST['modify'])) { 
  echo input($tbl,$qual,$field_edit,$field_show,1); 
-}elseif(isset($_POST['back']))
-{ 
-echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
-echo display_link($tbl,$qual,1,$field_show); 
 }
 else{
 echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";

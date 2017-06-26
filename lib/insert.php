@@ -18,43 +18,8 @@ if(isset($_POST['delete']))
 {
 delete($tbl);
 }
-if(isset($_POST['update']) || isset($_POST['updates']))
-{
-update($tbl);
-//update_single($tbl);
-//echo "<p> Records Updated </p>";
-}
-if(isset($_POST['addrow']))
-{
-if($tbl=='field')
-{
-$sqli=alter();
-echo $sqli;
-if(!mysql_query($sqli))
-	{
-	die.mysql_error();
-	}
-}
-if($tbl=='config')
-{
-$sqli=createtable();
-echo $sqli;
-if(!mysql_query($sqli))
-	{
-	die.mysql_error();
-	}
-  createid();
-}
-$sqli=insert($tbl);
-//echo $sqli;
-if(!mysql_query($sqli))
-	{
-	die.mysql_error();
-	}
-//echo "<p> records inserted </p>";
-//Added newly
 
-}
+
 if(isset($_POST['create']))
 {
 $sqli=create($tbl);
