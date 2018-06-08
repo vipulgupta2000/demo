@@ -4,7 +4,8 @@ if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){
 <div id="middle_right_top">
 <h2>Account Details</h2>
 </div>
-
+<div>
+</div>
 <?php
 $tbl=$_GET['page'];
 $qual_orig=" 1=1";
