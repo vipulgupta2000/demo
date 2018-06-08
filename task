@@ -1,0 +1,16 @@
+
+<?php
+
+//include "qual.php";
+include("lib/templateclick.php");
+include ("actionnoaccess.php");
+$tbl=$_GET['page'];
+
+$field_edit=array('id','summary','description','jdate');
+$field_show=array();
+   
+
+click($tbl,$field_edit,$field_edit);
+//action($tbl,$field_edit,$field_edit);
+
+?>

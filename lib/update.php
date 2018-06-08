@@ -350,7 +350,7 @@ function input_new($tbl,$qual,$arr,$arr_show,$mode)
 	$tg_opt_cl="</option>";
 	$tg_hidden="hidden";
 	$tg_readonly="\" readonly ";
-	$tg_text="<textarea rows=\"4\" cols=\"15\" ";
+	$tg_text="<textarea rows=\"4\" cols=\"15";
 	$tg_text_cl="</textarea>";
 
 	$result1=mysql_query($sql1);
@@ -463,7 +463,7 @@ function input_new($tbl,$qual,$arr,$arr_show,$mode)
 						}
 					}elseif($row['type']=="textarea")
 					{
-						$a=$a.$tg_td.$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_ip_cl;
+						$a=$a.$tg_td.$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_cl;
 						$a=$a.$datarow[$row['name']].$tg_text_cl.$tg_td_cl;
 					}
 					elseif($row['type']=="option")
@@ -594,7 +594,7 @@ if($mode>=2)
 		while($datarow=mysql_fetch_array($result_data))
 		{
 		if(empty($arr_show) || in_array($row['name'],$arr_show))
-		{		
+		{	
 		if($row['dbindex']=='primary' || !in_array($row['name'], $arr))
 		//if($row['dbindex']=='primary')
 		{
@@ -613,9 +613,14 @@ if($mode>=2)
                 $x=$x.$tg_div_cl;
 		}elseif($row['type']=="textarea")
 					{
-						$x=$x.$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_ip_cl;
-						$x=$x.$datarow[$row['name']].$tg_text_cl;
-					}	
+						$x=$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_ip_cl;
+						$x=$x.$datarow[$row['name']].$tg_text_cl.$tg_div_cl;
+					} 
+                elseif($row['type']=="ihtml")
+                {
+                        $x=$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_ip_cl;
+                        $x=$x.$datarow[$row['name']].$tg_text_cl.$tg_div_cl;
+                } 
 		elseif($row['type']=="option")
 					{					$x=$tg_sel.$row['name'].$cnt.$tg_ip_name.$row['name'].$cnt.$tg_cl;
 										//$a=$a.$tg_opt.$datarow[$row['name']].$tg_cl.$datarow[$row['name']].$tg_opt_cl;
@@ -688,7 +693,7 @@ if($mode>=2)
 							else
 							{$x=$x.$datarow[$row['name']].$tg_ip_cl.$tg_div_cl;}
 			}
-			
+		
 		if($row['span']==2)
 		{$d=$d.$x;}
 		else{
@@ -701,9 +706,9 @@ if($mode>=2)
                 
              
 		}
-	
+		
 		}
-			 
+		
 		}
 		
 		}$cnt++;

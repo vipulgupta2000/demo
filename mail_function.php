@@ -2,9 +2,10 @@
 
 require_once ('mail/class.phpmailer.php');
 require_once ('mail/class.smtp.php');
+require_once("auth.php");
 
 error_reporting(E_ALL ^ E_DEPRECATED);
-$ini_array = parse_ini_file("../../conf.ini",true);
+/*$ini_array = parse_ini_file("../../conf.ini",true);
 $host=$ini_array['sms']['host'];
 $username=$ini_array['sms']['username'];
 $password=sha1($ini_array['sms']['password']);
@@ -12,7 +13,7 @@ $db_name=$ini_array['sms']['db_name'];
 
 mysql_connect("$host","$username","$password") or die("cannot connect");
 mysql_select_db ("$db_name") or die ("cannot select DB");
-
+*/
 
 function send_mail($to, $to_name, $subject, $message, $seconds){
 	set_time_limit($seconds);
@@ -51,7 +52,7 @@ function send_mail($to, $to_name, $subject, $message, $seconds){
 					$mail->AddAddress($to[$i], $to_name[$i]);		// To Whom Mail Will be Send
 					$mail->Subject = $subject[$i];					// Subject of the Mail
 					$mail->Body  = $message[$i];					// Body of the Mail Content
-			
+			echo $to[$i].$to_name[$i];
 					if(!$mail->Send()){
 					echo "Mailer Error: " . $mail->ErrorInfo;
 					exit;

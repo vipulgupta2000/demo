@@ -32,6 +32,7 @@ require_once("auth.php");
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+       <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
@@ -103,15 +104,33 @@ function openRec($var,$tb)
 {
 var x=$var;
 var t=$tb;
-//document.forms["frm1"].elements['uid'].value=x;
+document.forms["frm1"].elements['uid'].value=x;
 document.forms["frm1"].elements['sel'].value=" id="+x;
 document.forms["frm1"].elements['act'].value="click";
 //document.forms["frm1"].action="home.php?page="+t;
 document.forms["frm1"].submit();
 }
+ /*     $(document).ready(function() {
+$("input").keyup(function() {
+    var value = this.value.toLowerCase();
+
+    $("table").find("tr").each(function(index) {
+        if (index === 0) return;
+        var id = $(this).find("td").text().toLowerCase();
+        $(this).toggle(id.indexOf(value) !== -1);
+   
+
+    });
+});
+        });
+     */
+
     </script>
 <script language="javascript" type="text/javascript" src="script/xml.js"></script>
 <script language="javascript" type="text/javascript" src="script/basic.js"></script>
+<script language="javascript" type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/tinymce/custom.js"></script>
+
 </body>
 </html>
 

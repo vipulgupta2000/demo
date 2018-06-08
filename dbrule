@@ -1,0 +1,30 @@
+<?php 
+
+?>
+<div id="middle_right_top">
+<h2>dbrule Management</h2>
+</div>
+
+<div class="col-md-10">
+<?php
+$tbl=$_GET['page'];
+
+echo "<a href=\"home.php?page=\"".$tbl."\">Show All</a> ";
+$field_edit=array('id','name','sdate');
+
+//fields thing from workflow
+$field_show=array('fieldlist');
+$field_edit=display_array('workflow','formname="dbrule"',1,$field_show);
+
+$str=$field_edit[0]['fieldlist'];
+$field_edit=explode(",",$str);
+
+$field_show=array();
+
+// Create a new record
+include("actionnoaccess.php");
+action('dbrule',$field_edit,$field_show);
+
+
+?>
+</div>

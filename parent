@@ -1,0 +1,66 @@
+
+<?php
+
+echo "<input type='hidden' name='tbl' id='tbl' value='" . $_GET['page'] . "' >";
+?>
+<div id="middle_right_top">
+    <h2>parent</h2>
+</div> 
+<div class="col-md-10">
+    <?php
+    $tbl = $_GET['page'];
+    echo "<a href=\"home.php?page=$tbl\">Show All</a><br /><br />";
+    $qual_orig = " 1=1";
+
+    $qual = isset($_POST['qual']) ? $_POST['qual'] : $qual_orig;
+    echo "<input type=\"hidden\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
+    $rid = isset($_POST['sel']) ? str_replace("id", "parentrecid", $_POST['sel']) : NULL;
+    $sel = isset($_POST['sel']) ? $_POST['sel'] : NULL;
+    $act = isset($_POST['act']) ? $_POST['act'] : NULL;
+    $back = isset($_POST['back']) ? $_POST['back'] : '';
+    echo "<input type=\"hidden\" name=\"sel\"  id=\"sel\" value=\"$sel\" />";
+    echo "<input type=\"hidden\" name=\"rid\" id=\"rid\" value=\"$rid\" />";
+
+    $btn_new = "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
+    $btn_Child = "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"child\" value=\"child\" />Add Child</button>";
+    $field_edit = array('fname', 'lname');
+    if (isset($_POST['new'])) {
+        $field_edit = array('fname', 'lname');
+        $field_show = array();
+        addrow1($tbl, $field_edit, $field_show, 3);
+        echo $btn_Child;
+    }  elseif (isset($_POST['updates']) || $act == 'click') {
+
+        echo input_new_modal($tbl, $sel, $field_edit, $field_show, 3);
+        $act = "";
+        $field_show = array();
+        echo display_ref1($tbl, $rid, 1, $field_show);
+        ?>
+
+    </div>
+
+    <?php
+
+    //$tbl,$field_edit,$field_show,$sel,$mode
+} elseif (isset($_POST['update'])) {
+    echo display($tbl, $qual, 1, $field_show);
+} elseif (isset($_POST['back'])) {
+    //echo 'in Back';
+    echo $btn_new;
+    echo display_link($tbl, $qual, 1, $field_show);
+} elseif (isset($_POST['modify'])) {
+    echo input($tbl, $qual, $field_edit, $field_show, 1);
+} else {	
+    $field_edit = array('fname', 'lname');
+    $field_show = array();
+    echo $btn_new;
+    //echo 'table'.$tbl;
+    echo display_link($tbl, $qual, 1, $field_show);
+
+}
+echo "<input type=\"hidden\" name=\"act\" id=\"act\" value=\"$act\"  />";
+
+
+
+?>
+</div>

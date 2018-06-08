@@ -49,9 +49,12 @@ $COD=$COD."foreach(\$rec as \$k)
 echo \$k[\$key];
            }
         if(\$key=='code' && \$l==2)   
-        \$hd=\$k[\$key];
+        {\$hd=\$k[\$key];
+        \$hd='<script>\$(document).ready(function(){';
+        }
         if(\$key=='code' && \$l==3)   
-        \$tl=\$k[\$key];
+        {\$tl=\$k[\$key];
+        \$tl='});</script>';}
         
     }
     }

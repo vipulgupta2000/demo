@@ -11,21 +11,32 @@
 $tbl='resourcing';
 echo "<a href=\"home.php?page=\"".$tbl."\">Show All</a> ";
 $field_edit=array('id','name','sdate');
-
+//for Akash if(rowaccess($id,$tbl)==1){}
 //fields thing from workflow
 $field_show=array('fieldlist');
 $field_edit=display_array('workflow','formname="resourcing"',1,$field_show);
 //var_dump($field_show[0]['fieldlist']);
-$str=$field_edit[0]['fieldlist'];
-///echo $str;
-$field_edit=explode(",",$str);
-$field_show=array();
+//var_dump($field_edit);
 
+$str=$field_edit[0]['fieldlist'];
+//echo "str is".$str;
+//$field_edit=explode(",",$str);
+$field_show=array();
+//rowaccess($tbl);
+//echo $rule;
+$status=3;
+$rule=$field_edit[1]['fieldlist'];
+//echo "status is ".$status;
+//$rule="\$status=2;if(\$status=2){echo 33;}";
+//Rule written with following criteria in workflow table record is run if($status>2){echo 33;}
+eval($rule);
+$field_edit=explode(",",$str);
+//echo "rule is".$rule;
 // Rules thing from workflow
 $arr=display_array('defect','id=3',1,array('status','description'));
 //var_dump($arr);
 //$arr=array(1,2,3,45);
-foreach($arr as $key=>$val)
+/*foreach($arr as $key=>$val)
 {//var_dump($val);
 //echo $val[$key]['description'];
 foreach($val as $k=>$v)
@@ -33,7 +44,7 @@ foreach($val as $k=>$v)
     echo $k." is".$v."<br/>";
 }
 //echo "$val[0]"; 
-}
+}*/
 /*$bt=array("Open","Review","Rated","Accepted","Closed");
 $btp=array("btn-info","btn-warning","btn-danger","btn-primary","btn-success");
 echo "<div class=\"btn-group\">";
@@ -45,72 +56,16 @@ echo $hd.$bt[$i].$tl;
 }*/
 //var_dump($field_show);
 //$qual=NULL;
-$qual_orig=" 1=1";
-$qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
-echo "<input type=\"hidden\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
 
-$sel=isset($_POST['sel'])?$_POST['sel']:NULL;
-$act=isset($_POST['act'])?$_POST['act']:NULL;
-$back=isset($_POST['back'])?$_POST['back']:'';
-echo "<input type=\"hidden\" name=\"sel\" value=\"$sel\" />";
 // Create a new record
-if(isset($_POST['addrow']))
-{
-    //validations
-if(isset($_POST['name0']))
-{   if($_POST['name0']=="vipul")
-{echo $_POST['name0']." Name is a required field";}}
-    else{
-$sqli=insert($tbl);
-if(!mysql_query($sqli))
-	{
-	die.mysql_error();
-	}
-    }
-}
-// Update a  record
-if(isset($_POST['update']) || isset($_POST['updates']))
-{
-update($tbl);
-//update_single($tbl);
-//echo "<p> Records Updated </p>";
-}
-if ($act=='click' ) {	
-	echo input_new($tbl,$sel,$field_edit,$field_show,2); 
-        $act="";
-}
-elseif(isset($_POST['new'])){   
-addrow1($tbl,$field_edit,$field_show,3);
-}
-elseif (isset($_POST['updates'])) {  
-     echo input_new($tbl,$sel,$field_edit,$field_show,2); 
-if(isset($_POST['status0']))echo "be happy";
-       
-}
-elseif (isset($_POST['update'])) {    
-     echo display($tbl,$qual,1,$field_show);
-}
-elseif(isset($_POST['back']))
-{ 
-echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
-echo display_link($tbl,$qual,1,$field_show); 
-}elseif (isset($_POST['modify'])) { 
- echo input($tbl,$qual,$field_edit,$field_show,1); 
-}
-else{
-echo "<br /><button class=\"btn btn-danger\" type=\"submit\" name=\"new\" value=\"new\" />New</button>";
-echo display($tbl,$qual,1,$field_show);
-// echo input($tbl,'severity=1',$field_edit,$field_show,1); 
-//addrow($tbl);
-echo "<button class=\"btn btn-danger\" onclick=\"myFunction()\">Try it</button>";
-}
+//include("action.php");
+//action('resourcing',$field_edit,$field_edit);
+include("actionnoaccess.php");
+action($tbl,$field_edit,$field_edit);
 
-
-
-echo "<input type=\"hidden\" name=\"act\" value=\"$act\"  />";
 
 ?>
- <!--
+ 
  <div class="col-md-12">
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
@@ -126,8 +81,5 @@ echo "<input type=\"hidden\" name=\"act\" value=\"$act\"  />";
     <div role="tabpanel" class="tab-pane" id="messages"> <img src="images/lion.jpeg" class="img-responsive" alt="Responsive image"></div>
     <div role="tabpanel" class="tab-pane" id="settings">...</div>
   </div>
- <script>   $('#myTabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})</script>
-</div>>
+
+</div>

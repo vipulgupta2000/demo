@@ -239,15 +239,16 @@ $fval="";
 			//			$x=$x.$tg_static.getmydate($datarow[$row['name']]).$tg_static_cl.$tg_div_cl.$tg_div_cl;
 				//		}else
 					//	{
-						$x=$x.$tg_ip_cl;
+						$x=$x.$tg_ip_cl.$tg_div_cl;
 						//$x=$x.$tg_static.$datarow[$row['name']].$tg_static_cl.$tg_div_cl.$tg_div_cl;
 						//}
 		
-		$x=$x.$tg_static.$tg_static_cl.$tg_div_cl.$tg_div_cl;
+		//$x=$x.$tg_static.$tg_static_cl.$tg_div_cl.$tg_div_cl;
 		}elseif($row['type']=="textarea")
 					{
 						$x=$x.$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_ip_cl;
 						$x=$x.$tg_text_cl;
+                                                $x=$x.$tg_div_cl;
 					}	
 		elseif($row['type']=="option")
 					{					$x=$tg_sel.$row['name'].$cnt.$tg_ip_name.$row['name'].$cnt.$tg_cl;
@@ -664,11 +665,11 @@ if($mode>=2)
 						//$x=$x.$tg_static.$datarow[$row['name']].$tg_static_cl.$tg_div_cl.$tg_div_cl;
 						//}
 		
-		$x=$x.$tg_static.$tg_static_cl.$tg_div_cl.$tg_div_cl;
+		//$x=$x.$tg_static.$tg_static_cl.$tg_div_cl.$tg_div_cl;
 		}elseif($row['type']=="textarea")
 					{
 						$x=$x.$tg_text.$tg_ip_name.$row['name'].$cnt.$tg_ip_cl;
-						$x=$x.$tg_text_cl;
+						$x=$x.$tg_text_cl.$tg_div_cl;
 					}	
 		elseif($row['type']=="option")
 					{					$x=$tg_sel.$row['name'].$cnt.$tg_ip_name.$row['name'].$cnt.$tg_cl;

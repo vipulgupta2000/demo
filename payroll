@@ -25,10 +25,10 @@ $field_display=array('id','empid','name','days','month','year','monthly_gross','
 $field_show=array();
 $field_show1 =array('id','empid','name','days','month','year','monthly_gross','net_salary','status');
  echo $qual;
-/*if ($act=='click' ) {	
+if ($act=='click' ) {	
 	echo input_new($tbl,$sel,$field_edit1,$field_show,3);   
 }
-elseif (isset($_POST['update'])) {  
+/*elseif (isset($_POST['update'])) {  
      echo display($tbl,$qual,1,$field_show);
 }
 elseif (isset($_POST['modify'])) {  

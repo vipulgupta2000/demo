@@ -1,22 +1,30 @@
+<?php 
+
+?>
 <div id="middle_right_top">
-<h2>Enter Time Sheet</h2>
+<h2>dbrule Management</h2>
 </div>
 
+<div class="col-md-10">
 <?php
 $tbl=$_GET['page'];
-$qual_orig=" 1=1";
-$qual=isset($_POST['qual'])?$_POST['qual']." and ".$qual_orig:$qual_orig;
-echo "Qual:<input type=\"text\" name=\"qual\" value=\"$qual\" />";
-//$tbl='appraisal_master';
-$field_edit=array('tblid','name','alias','size','type','dbindex','dbtype');
+
+echo "<a href=\"home.php?page=\"".$tbl."\">Show All</a> ";
+$field_edit=array('id','name','sdate');
+
+//fields thing from workflow
+$field_show=array('fieldlist');
+$field_edit=display_array('workflow',"formname='$tbl'",1,$field_show);
+
+$str=$field_edit[0]['fieldlist'];
+$field_edit=explode(",",$str);
+
 $field_show=array();
-//$qual=NULL;
-if(isset($_POST['modify']) || isset($_POST['update']))
-{
-echo input($tbl,$qual,$field_edit,$field_show);
-}else
-{
-echo display($tbl,$qual,1,$field_show);
-addrow($tbl);
-}
+
+// Create a new record
+include("actionnoaccess.php");
+action($tbl,$field_edit,$field_show);
+
+
 ?>
+</div>

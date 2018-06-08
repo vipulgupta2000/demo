@@ -789,35 +789,6 @@ function display_data_text($tbl,$qual,$md,$arr)
 {
 
 	$sql1=dbsql($tbl);
-	$tg_top="";
-	$tg_hdr="";
-	$tg_hdr_cl="";
-	$tg_ro="";
-	$tg_ro_cl="";
-	$tg_td="";
-	$tg_td_cl="";
-	$tg_top_cl="";
-	$tg_ip="";
-	$tg_ip_type="";
-	$tg_ip_name="";
-	$tg_ip_value="";
-	$tg_ip_size="";
-	$tg_ip_id="";
-	$tg_class="";
-	$tg_ip_cl="";
-	$tg_chk="<input type=\"checkbox\" name=\"chb";
-	$tg_chk_val="";
-	$tg_dat="<a href=\"javascript:NewCal('";
-	$tg_dat_cl="','yyyymmdd')\"><img src=datetimepick/cal.gif width=16 height=16 border=0 alt=Pick a date></a>";
-	$tg_sel="<select name=\"";
-	$tg_cl="\" >";
-	$tg_sel_cl="</select>";
-	$tg_opt="<option value=\"";
-	$tg_opt_cl="</option>";
-	$tg_hidden="";
-	$tg_readonly="\" readonly ";
-	$tg_text="<textarea rows=\"4\" cols=\"15\" ";
-	$tg_text_cl="</textarea>";
 
 	$data_sql="select * from ".$tbl;
 

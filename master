@@ -1,12 +1,114 @@
 <?php 
+
+//require_once 'auth.php';
 if($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='sys_admin'){
 ?>
 <div id="middle_right_top">
 <h2>Master</h2>
 </div>
+<script>
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    var i=0;
+    $('#master th input').each( function () {
+        var title = $(this).text();     
+        $(this).html( title+'<input type="text" id="'+title+i+'" placeholder="Search '+title+'" />' );
+        i++;
+    } );
+    
+    $( $('#master th input')).keyup(function() {
+    var value = this.value.toLowerCase();
+$.post( "ajaxresponse.php?page=payroll", {qual: 'id=2',page: 'payroll'},function( data ) {
+ 
+   $("#getCodeModal").modal("toggle");
+        $("#getCode").html(data);
+  //alert(data);
+});
 
-<div class="col-md-10">
+    /*$("table").find("tr").each(function(index) {
+        if (index === 0) return;
+        var id = $(this).find("td").text().toLowerCase();
+        $(this).toggle(id.indexOf(value) !== -1);
+   
+
+    });*/
+});
+ /*
+    // DataTable
+    var table = $('#master').DataTable();
+ 
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( '#input',this.column()).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );*/
+
+//code for Ajax calls via a post method 
+/*$.post( "home.php?page=defect", {qual: '1=1',rid: 'parentrecid=1'},function( data ) {
+ 
+   $("#getCodeModal").modal("toggle");
+        $("#getCode").html(data);
+  //alert(data);
+});
+*/
+} );
+
+//generate excel
+$(document).ready(function() {
+  $("#btnExport").click(function(e) {
+    e.preventDefault();
+
+    //getting data from our table
+    var data_type = 'data:application/vnd.ms-excel';
+    var table_div = document.getElementById('master');
+    var table_html = table_div.outerHTML.replace(/ /g, '%20');
+
+    var a = document.createElement('a');
+    a.href = data_type + ', ' + table_html;
+    a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+    a.click();
+  });
+});
+
+//generate pdf
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#vip').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+</script>
+  <button id="btnExport">Export to xls</button>
+  <button id="cmd">generate PDF</button>
+<div class="modal fade" id="getCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title" id="myModalLabel"> API CODE </h4>
+       </div>
+       <div class="modal-body" id="getCode" style="overflow-x: scroll;">
+          //ajax success content here.
+       </div>
+    </div>
+   </div>
+ </div>
+<div class="col-md-10" id="vip">
 <?php
+
 $tbl=$_GET['page'];
 echo "<a href=\"http://localhost/demo/home.php?page=$tbl\">Show All</a><br /><br />";
 $field_edit=array('emptype','empid','name','pan','doj','valid','edate','monthly_gross','net_salary','status','pf_accno','child_education','sex','medical_reimbursement','other','tax_slab_exemption','performance_linked_incentives','ptax','basic','hra','sdate','lwf');
@@ -53,6 +155,5 @@ echo display($tbl,$qual,1,$field_show);
 }
 else{echo "<h3><center>Sorry You don't have Admin Access</center></h3>";}
 
-echo "<input type=\"text\" name=\"act\" value=\"$act\"  />";
 ?>
     </div>

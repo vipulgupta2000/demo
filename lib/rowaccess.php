@@ -22,8 +22,8 @@ $result=mysql_query($sql);
 while($row = mysql_fetch_array($result))
 {
 
-	$arr=explode(';',$row[$key]);
-	if(in_array(0,$arr))
+        $arr=explode(';',$row[$key]);
+        if(in_array(0,$arr))
 	{$j=1; break;}
 	//print_r($arr);
 
@@ -34,11 +34,12 @@ while($row = mysql_fetch_array($result))
 			{
 			$j=1;
 			$k=1;
-			
+			break;
 			}
 
 
 	}
+        
 /*if($k==1){
 echo "hiii".$row['id'];
 $k=0;
